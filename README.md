@@ -1,7 +1,7 @@
 # Turkey
 
-This is a test runner for running integration/regression tests for
-.NET and .NET Core on Linux.
+This is a test runner for running integration/regression tests for a
+.NET SDK and Runtime on Linux.
 
 It uses the same format for identifying, selecting and running tests
 as [dotnet-bunny](https://github.com/redhat-developer/dotnet-bunny/).
@@ -12,11 +12,8 @@ It produces results in various forms, including a junit-compatible xml file.
 
 This is fully usable on GNU libc-based and musl libc-based Linux distributions.
 
-This is used by Red Hat to run .NET tests on Fedora and RHEL on multiple
-architectures including 64-bit ARM (`aarch64`), Intel x86_64 (`x86_64`) and IBM
-Z (`s390x`).
-
-It's also being used by other distributions, such as Alpine.
+This is used by Canonical to run .NET tests on Ubuntu on multiple architectures
+including 64-bit ARM (`aarch64`), Intel x86_64 (`x86_64`).
 
 # Building
 
@@ -43,7 +40,7 @@ To get output compatible with (the old) `dotnet-bunny`, use `dotnet
 turkey/Turkey.dll --compatible`
 
 A real example of a test-suite to use with this framework is:
-https://github.com/redhat-developer/dotnet-regular-tests/
+https://github.com/canonical/dotnet-regular-tests/
 
 # Writing Tests
 
@@ -241,7 +238,7 @@ Some notes for writing tests:
    It will also attach the `turkey.tar.gz` release tarball to the release.
 
    Many tools use `wget
-   https://github.com/redhat-developer/dotnet-bunny/releases/latest/download/turkey.tar.gz`
+   https://github.com/canonical/dotnet-test-runner/releases/latest/download/turkey.tar.gz`
    to get the latest release. This keeps them working.
 
 4. Publish the release in GitHub
@@ -258,7 +255,7 @@ Some notes for writing tests:
 
 # License
 
-Copyright (C) 2019 Red Hat, Inc
+Copyright (C) 2024 Canonical Ltd.
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
