@@ -11,15 +11,12 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
-
-    container:
-      image: registry.access.redhat.com/ubi8
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Install dependencies
         run: |
-          dnf install -y dotnet-sdk-6.0 git make
+          sudo apt-get install --assume-yes dotnet6 git make
 
       - uses: actions/checkout@v3
         with:
