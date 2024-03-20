@@ -1,9 +1,23 @@
-FRAMEWORK:=net6.0
 CONFIGURATION:=Release
 ARCH:=$(subst aarch64,arm64,$(subst x86_64,x64,$(shell uname -m)))
 RUNTIME:=linux-$(ARCH)
+FRAMEWORK:=net6.0
+
+# Building Turkey with a source-built .NET SDK may fail if that SDK references a version for TargetFramework
+# that is not yet released. Setting TargetBundledFramework to 'true' enables building with such SDKs by using
+# the bundled framework instead.
+ifeq ("${TargetBundledFramework}", "true")
+	ifndef BundledNETCoreAppTargetFrameworkVersion
+		$(error "BundledNETCoreAppTargetFrameworkVersion is not set")
+	endif
+	
+	FRAMEWORK:="net${BundledNETCoreAppTargetFrameworkVersion}"
+endif
 
 all: publish
+
+f:
+	@echo "$(FRAMEWORK)"
 
 check:
 	dotnet test -f $(FRAMEWORK) -c Release --verbosity detailed Turkey.Tests
