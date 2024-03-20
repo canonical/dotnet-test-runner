@@ -13,8 +13,10 @@ run-samples:
 	cd Samples && test -f ../turkey/Turkey.dll && (dotnet ../turkey/Turkey.dll || true)
 	rm -rf ~/.nuget && mv ~/.nuget.orig ~/.nuget
 
-publish:
+GIT_COMMIT_ID:
 	git rev-parse --short HEAD > GIT_COMMIT_ID
+
+publish: GIT_COMMIT_ID
 	cat GIT_COMMIT_ID
 	git describe --abbrev=0 | sed -e 's/^v//' > GIT_TAG_VERSION
 	cat GIT_TAG_VERSION
